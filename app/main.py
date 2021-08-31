@@ -67,7 +67,7 @@ routes = [
     Route('/', endpoint=index),
     Route('/archive', endpoint=archive),
     Route('/archive/{slug}', endpoint=archive_entry),
-    #Mount('/static', StaticFiles(directory='static'), name='static')
+    Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 
 app = Starlette(debug=True, exception_handlers=exception_handlers, routes=routes)
