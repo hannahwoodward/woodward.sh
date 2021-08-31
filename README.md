@@ -17,4 +17,4 @@ tags:
 
 - Build the docker image `docker build -t starlette .`
 - Start the container `docker run -d --name woodward-sh -p 80:80 starlette`
-- For auto restart in development `docker run -d -p 80:80 -v $(pwd):/app starlette /start-reload.sh`
+- For auto restart in development `docker run -d -p 80:80 -v $(pwd)/app:/app starlette /start-reload.sh`
