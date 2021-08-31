@@ -3,7 +3,7 @@ from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 
-templates = Jinja2Templates(directory='app/templates')
+templates = Jinja2Templates(directory='templates')
 
 async def index(request):
     template_vars = {
