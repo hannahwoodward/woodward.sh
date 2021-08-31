@@ -1,0 +1,42 @@
+{% set nav_items = [
+  { 'route': 'archive', 'title': 'Archive' },
+  { 'route': 'index', 'title': 'About' },
+  { 'url': 'https://github.com/hannahwoodward', 'title': 'Github' }
+] %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ entry.title }} / HW</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/app.css') }}">
+</head>
+
+<body>
+  <div class="layout">
+    <header>
+      <div class="cornered logo">HW</div>
+      <nav>
+        <ul>
+          {% for item in nav_items %}
+            {% if item.route is defined %}
+              {% set item_url = url_for(item.route)  %}
+            {% else %}
+              {% set item_url = item.url %}
+            {% endif %}
+
+            <li>
+              <a href="{{ item_url }}" class="{% if item_url == request.url %}is-active{% endif %}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <h1 class="uppercase">{{ entry.title }}</h1>
+
+      {% block content %}{% endblock %}
+    </main>
+  </div>
+</body>
+</html>
