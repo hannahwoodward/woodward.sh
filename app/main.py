@@ -37,30 +37,22 @@ async def archive_entry(request):
 
     return templates.TemplateResponse('_entry.jinja', template_vars)
 
-async def error_404_not_found(request, exc):
-    template_vars = {
-        'request': request,
-        'entry': {
-            'title': '404 - Not Found'
+def error_page(title):
+    async def handle(request, exc):
+        template_vars = {
+            'request': request,
+            'entry': {
+                'title': title
+            }
         }
-    }
 
-    return templates.TemplateResponse('_error.jinja', template_vars, status_code=exc.status_code)
+        return templates.TemplateResponse('_error.jinja', template_vars, status_code=exc.status_code)
 
-async def error_500_server(request, exc):
-    template_vars = {
-        'request': request,
-        'entry': {
-            'title': '500 - Server Error'
-        }
-    }
-
-    return templates.TemplateResponse('_error.jinja', template_vars, status_code=exc.status_code)
-
+    return handle
 
 exception_handlers = {
-    404: error_404_not_found,
-    500: error_500_server
+    404: error_page('404 - Not Found'),
+    500: error_page('500 - Server Error')
 }
 
 routes = [
