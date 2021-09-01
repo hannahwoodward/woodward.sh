@@ -6,10 +6,16 @@
 ] %}
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>{{ entry.title }} / HW</title>
-  <link rel="stylesheet" href="{{ url_for('static', path='/css/app.css') }}">
+<html lang="en">
+<head itemscope itemtype="http://schema.org/WebSite">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5">
+  <meta name="robots" content="noodp">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title itemprop="name">{{ entry.title }} / HW</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/app.css') }}" media="screen">
+  <link rel="shortcut icon" href="{{ url_for('static', path='/img/favicon.ico') }}"">
+  <link rel="apple-touch-icon" href="{{ url_for('static', path='/img/apple-touch-icon-precomposed.png') }}">
 </head>
 
 <body>
