@@ -5,6 +5,7 @@
 
   --cornered: polygon(0.75em 0, 100% 0, 100% calc(100% - 0.75em), calc(100% - 0.75em) 100%, 0 100%, 0 0.75em);
 
+  --fs-sm: 1rem;
   --fs-base: 1.5rem;
   --fs-lg: 2rem;
   --fs-xl: 5rem;
@@ -36,7 +37,7 @@ body {
   display: flex;
   font-family: var(--ff-pri);
   line-height: 1.5;
-  font-size: var(--fs-base);
+  font-size: var(--fs-sm);
   margin: 0 auto;
   max-width: 90rem;
   min-height: 100vh;
@@ -88,12 +89,19 @@ a.is-active::after {
 }
 
 header {
+  display: flex;
   flex-shrink: 0;
+  justify-content: space-between;
+}
+
+header nav {
+  padding-left: 1rem;
+  text-align: right;
 }
 
 main {
+  margin-top: 1.5em;
   max-width: 37em;
-  margin-left: 2em;
   width: 100%;
 }
 
@@ -117,7 +125,7 @@ h4 {
 }
 
 h1 {
-  font-size: var(--fs-xl);
+  font-size: var(--fs-lg);
   margin: 0;
 }
 
@@ -127,8 +135,8 @@ ul li {
 
 .box {
   border: 2px solid;
-  margin-top: 1.5rem;
-  padding: 0.5em 1.5em;
+  margin-top: 1rem;
+  padding: 0 1em;
 }
 
 .cornered {
@@ -143,8 +151,6 @@ ul li {
 }
 
 .layout {
-  display: flex;
-  justify-content: space-between;
   width: 100%;
 }
 
@@ -164,4 +170,39 @@ ul li {
 
 .uppercase {
   text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  body {
+    font-size: var(--fs-base);
+  }
+
+  h1 {
+    font-size: var(--fs-xl);
+  }
+
+  header {
+    display: block;
+  }
+
+  header nav {
+    padding-left: 0;
+    text-align: left;
+  }
+
+  main {
+    margin-left: 2em;
+    margin-top: 0;
+  }
+
+  .box {
+    border: 2px solid;
+    margin-top: 1.5rem;
+    padding: 0.5em 1.5em;
+  }
+
+  .layout {
+    display: flex;
+    justify-content: space-between;
+  }
 }
