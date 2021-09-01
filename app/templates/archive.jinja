@@ -1,1 +1,26 @@
 {% extends '_base.jinja' %}
+
+{% block content %}
+  <div class="box">
+    <h2>Posts</h2>
+    <ul>
+      <li>
+        <a href="{{ url_for('archive_entry', slug='goodbye-web') }}">Goodbye Web</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h2>Reading List</h2>
+
+    <ul>
+      <li><a href="https://esd.copernicus.org/articles/12/601/2021/">Copernicus: Interacting tipping elements increase risk of climate domino effects under global warming</a></li>
+
+      <li><a href="https://www.theguardian.com/environment/2021/may/12/emissions-shrinking-the-stratosphere-scientists-find">The Guardian: Climate emissions shrinking the stratosphere, scientists reveal</a></li>
+
+      <li><a href="https://www.theguardian.com/environment/2021/may/24/trials-to-suck-carbon-dioxide-from-the-air-to-start-across-the-uk">The Guardian: Trials to suck carbon dioxide from the air to start across the UK</a></li>
+
+      <li><a href="https://signal.org/blog/the-instagram-ads-you-will-never-see/">Signal: The Instagram ads Facebook won't show you</a></li>
+    </ul>
+  </div>
+{% endblock %}
