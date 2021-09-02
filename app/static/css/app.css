@@ -62,19 +62,15 @@ body {
 a {
   border-bottom: 1px solid;
   color: inherit;
-  position: relative;
   text-decoration: inherit;
-  z-index: 0;
 }
 
 a::after {
-  border: 0;
   content: '↗';
   display: none;
-  font-size: 0.5em;
+  font-size: 0.75em;
   margin-left: 0.25em;
   position: absolute;
-  z-index: 1;
 }
 
 a:hover,
@@ -124,16 +120,25 @@ nav ul li {
   padding: 0;
 }
 
-h1,
 h2,
 h3,
 h4 {
+  border-bottom: 2px solid;
   font-family: var(--ff-sec);
   font-weight: 300;
+  margin-top: 0;
+}
+
+h2:not(:first-child),
+h3:not(:first-child),
+h4:not(:first-child) {
+  margin-top: 1.5em;
 }
 
 h1 {
+  font-family: var(--ff-sec);
   font-size: var(--fs-lg);
+  font-weight: 300;
   margin: 0;
 }
 
