@@ -69,6 +69,7 @@ a::after {
   content: '↗';
   display: none;
   font-size: 0.75em;
+  line-height: 1.1;
   margin-left: 0.25em;
   position: absolute;
 }
@@ -80,7 +81,7 @@ a:focus {
 
 a:hover::after,
 a:focus::after {
-  display: inline-block;
+  display: inline;
 }
 
 a.is-active {
