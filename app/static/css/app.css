@@ -1,6 +1,6 @@
 :root {
   --color-dark: #53624e; /*#1F271B; #0e1116;*/
-  --color-accent: #e0e1df; /* #A6B496; #e0d2df; */
+  --color-accent: #E7E7DA; /* #A6B496; #e0d2df; */
   --color-tertiary: #F0D2B7;
 
   --cornered: polygon(0.75em 0, 100% 0, 100% calc(100% - 0.75em), calc(100% - 0.75em) 100%, 0 100%, 0 0.75em);
@@ -10,7 +10,7 @@
   --fs-lg: 2rem;
   --fs-xl: 5rem;
 
-  --ff-pri: 'Almerena Mono Display', monospace;
+  --ff-pri: 'Almerena Mono', monospace;
   --ff-sec: 'Almerena Mono Display', monospace;
 }
 
@@ -23,11 +23,19 @@
 }
 
 @font-face {
-  font-family: 'Almerena Mono Display';
+  font-family: 'Almerena Mono';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/Almarena-Mono-Light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Almerena Mono';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url('../fonts/Almarena-Mono-Display-Bold.woff') format('woff');
+  src: url('../fonts/Almarena-Mono-Bold.woff') format('woff');
 }
 
 body {
