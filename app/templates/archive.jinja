@@ -1,14 +1,16 @@
 {% extends '_base.jinja' %}
 
 {% block content %}
-  <!-- <div class="box">
+  <div class="box">
     <h2>Posts</h2>
     <ul>
-      <li>
-        <a href="{{ url_for('archive_entry', slug='goodbye-web') }}">Goodbye Web</a>
-      </li>
+      {% for post in entry.posts %}
+        <li>
+          <a href="{{ url_for('archive_entry', slug=post.slug) }}">{{ post.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
-  </div> -->
+  </div>
 
   <div class="box">
     <h2>Reading List</h2>

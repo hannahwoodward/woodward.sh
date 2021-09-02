@@ -1,9 +1,25 @@
+from frontmatter import Frontmatter
+from pathlib import Path
 from starlette.applications import Starlette
+from starlette.middleware import Middleware
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+import markdown
+import re
 
 templates = Jinja2Templates(directory='templates')
+
+def get_entry_data(path, slug):
+    file = Frontmatter.read_file('data/' + path + '.md')
+    entry = {
+        'content': markdown.markdown(file['body']),
+        'metadata': file['attributes'],
+        'slug': slug,
+        'title': file['attributes']['title']
+    }
+
+    return entry
 
 async def index(request):
     template_vars = {
@@ -16,9 +32,17 @@ async def index(request):
     return templates.TemplateResponse('index.jinja', template_vars)
 
 async def archive(request):
+    posts = []
+    for p in Path('data/archive').glob('*.md'):
+        slug = re.sub(r'data/archive/(.+)\.md', r'\g<1>', str(p))
+        post = get_entry_data('archive/' + slug, slug)
+        if post and post['metadata']['enabled']:
+            posts.append(post)
+
     template_vars = {
         'request': request,
         'entry': {
+            'posts': posts,
             'title': 'Archive'
         }
     }
@@ -30,9 +54,7 @@ async def archive_entry(request):
 
     template_vars = {
         'request': request,
-        'entry': {
-            'title': ''
-        }
+        'entry': get_entry_data('archive/' + slug, slug)
     }
 
     return templates.TemplateResponse('_entry.jinja', template_vars)

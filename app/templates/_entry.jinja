@@ -1,1 +1,9 @@
 {% extends '_base.jinja' %}
+
+{% block content %}
+  <div class="box">
+    {% autoescape false %}
+      {{ entry.content }}
+    {% endautoescape %}
+  </div>
+{% endblock %}
