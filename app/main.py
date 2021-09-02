@@ -2,6 +2,7 @@ from frontmatter import Frontmatter
 from pathlib import Path
 from starlette.applications import Starlette
 from starlette.middleware import Middleware
+from starlette.middleware.gzip import GZipMiddleware
 from starlette.routing import Mount, Route
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
@@ -77,6 +78,10 @@ exception_handlers = {
     500: error_page('500 - Server Error')
 }
 
+middleware = [
+    Middleware(GZipMiddleware, minimum_size=1000)
+]
+
 routes = [
     Route('/', endpoint=index),
     Route('/archive', endpoint=archive),
@@ -84,4 +89,4 @@ routes = [
     Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 
-app = Starlette(debug=True, exception_handlers=exception_handlers, routes=routes)
+app = Starlette(debug=True, exception_handlers=exception_handlers, middleware=middleware, routes=routes)
