@@ -1,3 +1,4 @@
+{% set current_path = request.url.path ~ '' %}
 {% set nav_items = [
   { 'route': 'index', 'title': 'About' },
   { 'route': 'archive', 'title': 'Archive' },
@@ -25,14 +26,21 @@
       <nav>
         <ul>
           {% for item in nav_items %}
+            {% set is_active = false %}
             {% if item.route is defined %}
               {% set item_url = url_for(item.route)  %}
+              {% set relative_path = item_url|replace(request.url.scheme ~ '://' ~ request.url.hostname, '') %}
+              {% set is_active = current_path.startswith(relative_path) %}
+              {% if relative_path == '/' %}
+                {% set is_active = relative_path == current_path %}
+              {% endif %}
             {% else %}
               {% set item_url = item.url %}
             {% endif %}
 
+
             <li>
-              <a href="{{ item_url }}" class="{% if item_url == request.url %}is-active{% endif %}">{{ item.title }}</a>
+              <a href="{{ item_url }}" class="{% if is_active %}is-active{% endif %}">{{ item.title }}</a>
             </li>
           {% endfor %}
         </ul>
