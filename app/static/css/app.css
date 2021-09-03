@@ -1,6 +1,6 @@
 :root {
-  --color-dark: #53624e; /*#1F271B; #0e1116;*/
-  --color-accent: #E7E7DA; /* #A6B496; #e0d2df; */
+  --color-dark: #53624e;
+  --color-accent: #E7E7DA;
   --color-tertiary: #F0D2B7;
 
   --cornered: polygon(0.75em 0, 100% 0, 100% calc(100% - 0.75em), calc(100% - 0.75em) 100%, 0 100%, 0 0.75em);
