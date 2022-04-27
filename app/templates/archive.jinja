@@ -1,5 +1,18 @@
 {% extends '_base.jinja' %}
 
+{% set reading_list = [
+  { 'url': 'https://www.theguardian.com/uk/environment', 'title': 'Guardian environment' },
+  { 'url': 'http://news.ycombinator.com', 'title': 'Hacker news' },
+  { 'url': 'https://www.itsfreezinginla.co.uk', 'title': 'It\'s freezing in LA' },
+  { 'url': 'https://solar.lowtechmagazine.com', 'title': 'Low tech magazine' },
+  { 'url': 'https://search.marginalia.nu', 'title': 'Marginalia search' },
+  { 'url': 'https://www.nature.com/nclimate', 'title': 'Nature climate change' },
+  { 'url': 'https://www.nature.com/search?q=cryosphere&order=date_desc', 'title': 'Nature cryosphere' },
+  { 'url': 'https://novaramedia.com', 'title': 'Novara media' },
+  { 'url': 'https://whatsonmubi.com', 'title': 'What\'s on MUBI' }
+] %}
+
+
 {% block content %}
   <div class="box">
     <h2>Posts</h2>
@@ -13,16 +26,13 @@
   </div>
 
   <div class="box">
-    <h2>Reading List</h2>
-
+    <h2>Reading list</h2>
     <ul>
-      <li><a href="https://esd.copernicus.org/articles/12/601/2021/">Copernicus: Interacting tipping elements increase risk of climate domino effects under global warming</a></li>
-
-      <li><a href="https://www.theguardian.com/environment/2021/may/12/emissions-shrinking-the-stratosphere-scientists-find">The Guardian: Climate emissions shrinking the stratosphere, scientists reveal</a></li>
-
-      <li><a href="https://www.theguardian.com/environment/2021/may/24/trials-to-suck-carbon-dioxide-from-the-air-to-start-across-the-uk">The Guardian: Trials to suck carbon dioxide from the air to start across the UK</a></li>
-
-      <li><a href="https://signal.org/blog/the-instagram-ads-you-will-never-see/">Signal: The Instagram ads Facebook won't show you</a></li>
+      {% for x in reading_list %}
+        <li>
+          <a href="{{ x.url }}">{{ x.title }}</a>
+        </li>
+      {% endfor %}
     </ul>
   </div>
 {% endblock %}
