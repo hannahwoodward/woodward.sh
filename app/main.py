@@ -60,6 +60,16 @@ async def archive_entry(request):
 
     return templates.TemplateResponse('_entry.jinja', template_vars)
 
+async def food(request):
+    slug = 'food'
+
+    template_vars = {
+        'request': request,
+        'entry': get_entry_data(slug, slug)
+    }
+
+    return templates.TemplateResponse('_entry.jinja', template_vars)
+
 def error_page(title):
     async def handle(request, exc):
         template_vars = {
@@ -86,6 +96,7 @@ routes = [
     Route('/', endpoint=index),
     Route('/archive', endpoint=archive),
     Route('/archive/{slug}', endpoint=archive_entry),
+    Route('/food', endpoint=food),
     Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 
