@@ -58,4 +58,4 @@ Linking this back to the web, I feel like this ties in quite well with the over-
 
 TODO:
 
-- rare metal usage in devices
+- rare metal usage in devices - https://hir.harvard.edu/not-so-green-technology-the-complicated-legacy-of-rare-earth-mining/
