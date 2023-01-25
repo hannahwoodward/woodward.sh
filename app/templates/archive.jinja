@@ -1,11 +1,16 @@
 {% extends '_base.jinja' %}
 
-{% set reading_list = [
+{#
   { 'url': 'https://www.theguardian.com/uk/environment', 'title': 'Guardian environment' },
-  { 'url': 'http://news.ycombinator.com', 'title': 'Hacker news' },
   { 'url': 'https://www.itsfreezinginla.co.uk', 'title': 'It\'s freezing in LA' },
+ #}
+{% set reading_list = [
+  { 'url': 'https://astrobiology.com', 'title': 'Astrobiology' },
+  { 'url': 'https://arxiv.org/list/astro-ph.EP/pastweek', 'title': 'arxiv: Earth and Planetary Astrophysics' },
+  { 'url': 'http://news.ycombinator.com', 'title': 'Hacker news' },
   { 'url': 'https://solar.lowtechmagazine.com', 'title': 'Low tech magazine' },
   { 'url': 'https://search.marginalia.nu', 'title': 'Marginalia search' },
+  { 'url': 'https://www.nature.com/natastron', 'title': 'Nature astronomy' },
   { 'url': 'https://www.nature.com/nclimate', 'title': 'Nature climate change' },
   { 'url': 'https://www.nature.com/search?q=cryosphere&order=date_desc', 'title': 'Nature cryosphere' },
   { 'url': 'https://novaramedia.com', 'title': 'Novara media' },
@@ -19,7 +24,7 @@
     <ul>
       {% for post in entry.posts %}
         <li>
-          <a href="{{ url_for('archive_entry', slug=post.slug) }}">{{ post.title }}</a>
+          <a href="{{ url_for('archive_entry', slug=post.slug) }}">{{ post.title }} ({{ post.post_date }})</a>
         </li>
       {% endfor %}
     </ul>
