@@ -1,0 +1,25 @@
+{% extends '_base.jinja' %}
+
+{#
+{
+  'title': 'py-clim-helpers',
+  'url': 'https://github.com/hannahwoodward/py-clim-helpers',
+  'summary': 'A python library with some helper classes for analysing, plotting, and downloading geospatial data.'
+}
+#}
+
+
+{% block content %}
+  <div class="box">
+    <ul>
+      {% for x in entry.metadata.content_data %}
+        <li>
+          <p>
+            <a href="{{ x.url }}">{{ x.title }}</a><br>
+            {{ x.summary }}
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endblock %}

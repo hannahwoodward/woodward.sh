@@ -32,33 +32,33 @@ async def index(request):
 
     return templates.TemplateResponse('index.jinja', template_vars)
 
-async def archive(request):
-    posts = []
-    for p in Path('data/archive').glob('*.md'):
-        slug = re.sub(r'data/archive/(.+)\.md', r'\g<1>', str(p))
-        post = get_entry_data('archive/' + slug, slug)
-        if post and post['metadata']['enabled']:
-            posts.append(post)
-
-    template_vars = {
-        'request': request,
-        'entry': {
-            'posts': posts,
-            'title': 'Archive'
-        }
-    }
-
-    return templates.TemplateResponse('archive.jinja', template_vars)
-
-async def archive_entry(request):
-    slug = request.path_params['slug']
-
-    template_vars = {
-        'request': request,
-        'entry': get_entry_data('archive/' + slug, slug)
-    }
-
-    return templates.TemplateResponse('_entry.jinja', template_vars)
+# async def archive(request):
+#     posts = []
+#     for p in Path('data/archive').glob('*.md'):
+#         slug = re.sub(r'data/archive/(.+)\.md', r'\g<1>', str(p))
+#         post = get_entry_data('archive/' + slug, slug)
+#         if post and post['metadata']['enabled']:
+#             posts.append(post)
+#
+#     template_vars = {
+#         'request': request,
+#         'entry': {
+#             'posts': posts,
+#             'title': 'Archive'
+#         }
+#     }
+#
+#     return templates.TemplateResponse('archive.jinja', template_vars)
+#
+# async def archive_entry(request):
+#     slug = request.path_params['slug']
+#
+#     template_vars = {
+#         'request': request,
+#         'entry': get_entry_data('archive/' + slug, slug)
+#     }
+#
+#     return templates.TemplateResponse('_entry.jinja', template_vars)
 
 async def food(request):
     slug = 'food'
@@ -69,6 +69,37 @@ async def food(request):
     }
 
     return templates.TemplateResponse('_entry.jinja', template_vars)
+
+async def libs(request):
+    slug = 'libs'
+
+    template_vars = {
+        'request': request,
+        'entry': get_entry_data(slug, slug)
+    }
+
+    return templates.TemplateResponse('libs.jinja', template_vars)
+
+async def pottery(request):
+    posts = []
+    for p in Path('data/pottery').glob('*.md'):
+        slug = re.sub(r'data/pottery/(.+)\.md', r'\g<1>', str(p))
+        post = get_entry_data('pottery/' + slug, slug)
+        if post and post['metadata']['enabled']:
+            posts.append(post)
+
+    # Sort by newest post date
+    posts = sorted(posts, key=lambda item: item['metadata']['post_date'])[::-1]
+
+    template_vars = {
+        'request': request,
+        'entry': {
+            'posts': posts,
+            'title': 'Pottery'
+        }
+    }
+
+    return templates.TemplateResponse('pottery.jinja', template_vars)
 
 def error_page(title):
     async def handle(request, exc):
@@ -94,9 +125,11 @@ middleware = [
 
 routes = [
     Route('/', endpoint=index),
-    Route('/archive', endpoint=archive),
-    Route('/archive/{slug}', endpoint=archive_entry),
+    # Route('/archive', endpoint=archive),
+    # Route('/archive/{slug}', endpoint=archive_entry),
     Route('/food', endpoint=food),
+    Route('/libs', endpoint=libs),
+    Route('/pottery', endpoint=pottery),
     Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 

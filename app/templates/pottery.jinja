@@ -1,0 +1,31 @@
+{% extends '_base.jinja' %}
+
+{% block content %}
+  <div class="box">
+    {% for post in entry.posts %}
+        <h2>{{ post.title }}</h2>
+
+        {% autoescape false %}
+          {{ post.content }}
+        {% endautoescape %}
+
+        {% for item in post.metadata.content_data %}
+          <ul class="list-row">
+            {% for img in item.images %}
+              <li>
+                <img src="{{ img }}" alt="{{ item.title }}" loading="lazy">
+              </li>
+            {% endfor %}
+          </ul>
+          <p>
+            <strong>{{ item.title }}</strong>
+            {% if item.amount %}<br>amount: {{ item.amount }}{% endif %}
+            {% if item.style %}<br>style: {{ item.style }}{% endif %}
+            {% if item.glazes %}<br>glazes: {{ item.glazes }}{% endif %}
+          </p>
+
+          <hr>
+        {% endfor %}
+    {% endfor %}
+  </div>
+{% endblock %}

@@ -1,7 +1,10 @@
 {% set current_path = request.url.path ~ '' %}
+
+{# { 'route': 'archive', 'title': 'Archive' }, #}
 {% set nav_items = [
   { 'route': 'index', 'title': 'About' },
-  { 'route': 'archive', 'title': 'Archive' },
+  { 'route': 'libs', 'title': 'Libs' },
+  { 'route': 'pottery', 'title': 'Pottery' },
   { 'route': 'food', 'title': 'Food' },
   { 'url': 'https://github.com/hannahwoodward', 'title': 'Github' }
 ] %}
@@ -47,7 +50,7 @@
     </header>
 
     <main>
-      <h1>{{ entry.title }}</h1>
+      <h1>{{ entry.title }}{% if entry.post_date %}{{ item.post_date }}{% endif %}</h1>
 
       {% block content %}{% endblock %}
     </main>
