@@ -2,6 +2,10 @@
 title: 'Libs'
 content_data:
   -
+    title: docker-hextor (2023)
+    url: https://github.com/hannahwoodward/docker-hextor
+    summary: Docker image containing the HEXTOR EBM.
+  -
     title: docker-exocam (2023)
     url: https://github.com/hannahwoodward/docker-exocam
     summary: Docker image containing the ExoCAM (CESM1.2.1) GCM.
