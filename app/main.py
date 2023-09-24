@@ -11,6 +11,7 @@ import re
 
 templates = Jinja2Templates(directory='templates')
 
+# ----- HELPERS -----
 def get_entry_data(path, slug):
     file = Frontmatter.read_file('data/' + path + '.md')
     entry = {
@@ -22,6 +23,17 @@ def get_entry_data(path, slug):
 
     return entry
 
+def get_entry_listings(path):
+    posts = []
+    for p in Path(f'data/{path}').glob('*.md'):
+        slug = re.sub(rf'data/{path}/(.+)\.md', r'\g<1>', str(p))
+        post = get_entry_data(f'{path}/{slug}', slug)
+        if post and post['metadata']['enabled']:
+            posts.append(post)
+
+    return posts
+
+# ----- PAGES -----
 async def index(request):
     template_vars = {
         'request': request,
@@ -60,33 +72,19 @@ async def index(request):
 #
 #     return templates.TemplateResponse('_entry.jinja', template_vars)
 
-async def food(request):
-    slug = 'food'
+def page(slug, template):
+    async def handle(request):
+        template_vars = {
+            'request': request,
+            'entry': get_entry_data(slug, slug)
+        }
 
-    template_vars = {
-        'request': request,
-        'entry': get_entry_data(slug, slug)
-    }
+        return templates.TemplateResponse(template, template_vars)
 
-    return templates.TemplateResponse('_entry.jinja', template_vars)
+    return handle
 
-async def libs(request):
-    slug = 'libs'
-
-    template_vars = {
-        'request': request,
-        'entry': get_entry_data(slug, slug)
-    }
-
-    return templates.TemplateResponse('libs.jinja', template_vars)
-
-async def pottery(request):
-    posts = []
-    for p in Path('data/pottery').glob('*.md'):
-        slug = re.sub(r'data/pottery/(.+)\.md', r'\g<1>', str(p))
-        post = get_entry_data('pottery/' + slug, slug)
-        if post and post['metadata']['enabled']:
-            posts.append(post)
+async def page_pottery(request):
+    posts = get_entry_listings(path='pottery')
 
     # Sort by newest post date
     posts = sorted(posts, key=lambda item: item['metadata']['post_date'])[::-1]
@@ -101,7 +99,7 @@ async def pottery(request):
 
     return templates.TemplateResponse('pottery.jinja', template_vars)
 
-def error_page(title):
+def page_error(title):
     async def handle(request, exc):
         template_vars = {
             'request': request,
@@ -115,8 +113,8 @@ def error_page(title):
     return handle
 
 exception_handlers = {
-    404: error_page('404 - Not Found'),
-    500: error_page('500 - Server Error')
+    404: page_error('404 - Not Found'),
+    500: page_error('500 - Server Error')
 }
 
 middleware = [
@@ -127,9 +125,9 @@ routes = [
     Route('/', endpoint=index),
     # Route('/archive', endpoint=archive),
     # Route('/archive/{slug}', endpoint=archive_entry),
-    Route('/food', endpoint=food),
-    Route('/libs', endpoint=libs),
-    Route('/pottery', endpoint=pottery),
+    Route('/food', endpoint=page('food', '_entry.jinja'), name='food'),
+    Route('/libs', endpoint=page('libs', 'libs.jinja'), name='libs'),
+    Route('/pottery', endpoint=page_pottery, name='pottery'),
     Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 
