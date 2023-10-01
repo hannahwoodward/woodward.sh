@@ -5,6 +5,6 @@
 rm -rf tmp
 git lfs install
 git clone https://github.com/hannahwoodward/woodward.sh.git tmp
-git lfs fetch --all
-mv tmp/app/static/uploads static/uploads
+cd tmp && git lfs fetch --all
+cd .. && mv tmp/app/static/uploads static/uploads
 rm -rf tmp
