@@ -1,0 +1,80 @@
+:root {
+  --r-background-color: #2A0C4E;
+  --r-main-font: 'Museo Sans', sans-serif;
+  --r-main-font-size: 32px;
+  --r-main-color: #FBE7D8;
+  /* --r-block-margin: #{$blockMargin}; */
+  /* --r-heading-margin: #{$headingMargin}; */
+  --r-heading-font: 'Recoleta', serif;
+  --r-heading-color: #FFF8F0;
+  /* --r-heading-line-height: #{$headingLineHeight}; */
+  --r-heading-letter-spacing: 0;
+  /* --r-heading-text-transform: #{$headingTextTransform}; */
+  /* --r-heading-text-shadow: #{$headingTextShadow}; */
+  --r-heading-font-weight: 400;
+  /* --r-heading1-text-shadow: #{$heading1TextShadow}; */
+  /* --r-heading1-size: #{$heading1Size}; */
+  /* --r-heading2-size: #{$heading2Size}; */
+  /* --r-heading3-size: #{$heading3Size}; */
+  /* --r-heading4-size: #{$heading4Size}; */
+  /* --r-code-font: #{$codeFont}; */
+  --r-link-color: #CC6D39;
+  /* --r-link-color-dark: #{darken($linkColor , 15% )}; */
+  /* --r-link-color-hover: #{$linkColorHover}; */
+  /* --r-selection-background-color: #{$selectionBackgroundColor}; */
+  /* --r-selection-color: #{$selectionColor}; */
+}
+
+
+@font-face {
+  font-family: 'Recoleta';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Recoleta-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/MuseoSans-500.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-style: italic;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../fonts/MuseoSans-500Italic.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/MuseoSans-700.otf') format('opentype');
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+}
+
+.reveal h3 {
+  color: var(--r-main-color);
+  font-style: italic;
+}
+
+.reveal img {
+  margin-top: 0;
+}
+
+.reveal li {
+  margin-bottom: 0.2em;
+}
