@@ -12,10 +12,10 @@ import re
 templates = Jinja2Templates(directory='templates')
 
 # ----- HELPERS -----
-def get_entry_data(path, slug):
+def get_entry_data(path, slug, raw=False):
     file = Frontmatter.read_file('data/' + path + '.md')
     entry = {
-        'content': markdown.markdown(file['body']),
+        'content': file['body'] if raw else markdown.markdown(file['body']),
         'metadata': file['attributes'],
         'slug': slug,
         'title': file['attributes']['title']
@@ -72,6 +72,19 @@ async def index(request):
 #
 #     return templates.TemplateResponse('_entry.jinja', template_vars)
 
+def entry(path, template='_entry.jinja', raw=False):
+    async def handle(request):
+        slug = request.path_params['slug']
+
+        template_vars = {
+            'request': request,
+            'entry': get_entry_data(path.format(slug=slug), slug, raw)
+        }
+
+        return templates.TemplateResponse(template, template_vars)
+
+    return handle
+
 def page(slug, template):
     async def handle(request):
         template_vars = {
@@ -83,21 +96,26 @@ def page(slug, template):
 
     return handle
 
-async def page_pottery(request):
-    posts = get_entry_listings(path='pottery')
 
-    # Sort by newest post date
-    posts = sorted(posts, key=lambda item: item['metadata']['post_date'])[::-1]
+def page_listings(path, title, template):
+    async def handle(request):
+        posts = get_entry_listings(path=path)
 
-    template_vars = {
-        'request': request,
-        'entry': {
-            'posts': posts,
-            'title': 'Pottery'
+        # Sort by newest post date
+        posts = sorted(posts, key=lambda item: item['metadata']['post_date'])[::-1]
+
+        template_vars = {
+            'request': request,
+            'entry': {
+                'posts': posts,
+                'title': title
+            }
         }
-    }
 
-    return templates.TemplateResponse('pottery.jinja', template_vars)
+        return templates.TemplateResponse(template, template_vars)
+
+    return handle
+
 
 def page_error(title):
     async def handle(request, exc):
@@ -127,7 +145,9 @@ routes = [
     # Route('/archive/{slug}', endpoint=archive_entry),
     Route('/food', endpoint=page('food', '_entry.jinja'), name='food'),
     Route('/libs', endpoint=page('libs', 'libs.jinja'), name='libs'),
-    Route('/pottery', endpoint=page_pottery, name='pottery'),
+    Route('/pottery', endpoint=page_listings('pottery', 'Pottery', 'pottery.jinja'), name='pottery'),
+    # Route('/slides', endpoint=page_listings('slides', 'Presentation slides', 'slides.jinja'), name='slides'),
+    Route('/slides/{slug}', endpoint=entry('slides/{slug}', '_entry-slides.jinja', raw=True), name='slides_entry'),
     Mount('/static', StaticFiles(directory='static'), name='static')
 ]
 

@@ -1,9 +1,13 @@
 {% set current_path = request.url.path ~ '' %}
 
-{# { 'route': 'archive', 'title': 'Archive' }, #}
+{#
+{ 'route': 'archive', 'title': 'Archive' },
+{ 'route': 'slides', 'title': 'Slides' },
+#}
 {% set nav_items = [
   { 'route': 'index', 'title': 'About' },
   { 'route': 'libs', 'title': 'Libs' },
+
   { 'route': 'pottery', 'title': 'Pottery' },
   { 'route': 'food', 'title': 'Food' },
   { 'url': 'https://github.com/hannahwoodward', 'title': 'Github' }

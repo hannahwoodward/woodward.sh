@@ -1,0 +1,38 @@
+{% set current_path = request.url.path ~ '' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head itemscope itemtype="http://schema.org/WebSite">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5">
+  <meta name="robots" content="noodp">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title itemprop="name">{{ entry.title }} / HW</title>
+  <link rel="shortcut icon" href="{{ url_for('static', path='/img/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ url_for('static', path='/img/apple-touch-icon-precomposed.png') }}">
+
+  <link rel="stylesheet" href="{{ url_for('static', path='/js/node_modules/reveal.js/dist/reveal.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='/js/node_modules/reveal.js/dist/theme/night.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', path='/css/slides.css?v=2') }}" media="screen">
+</head>
+
+<body>
+  {% block content %}{% endblock %}
+
+  <script src="{{ url_for('static', path='/js/node_modules/reveal.js/dist/reveal.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/node_modules/reveal.js/plugin/math/math.js') }}"></script>
+  <script src="{{ url_for('static', path='/js/node_modules/reveal.js/plugin/markdown/markdown.js') }}"></script>
+  <script>
+    Reveal.initialize({
+      hashOneBasedIndex: true,
+      plugins: [
+        RevealMarkdown,
+        RevealMath.KaTeX,
+      ],
+      slideNumber: true,
+      transition: 'none',
+      width: 1024,
+    });
+  </script>
+</body>
+</html>

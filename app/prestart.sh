@@ -10,3 +10,6 @@ unzip main.zip
 cd ..
 mv tmp/*/app/static/uploads static/uploads
 rm -rf tmp
+
+# Copy over node_modules
+cp -r /app_build/static/js /app/static
