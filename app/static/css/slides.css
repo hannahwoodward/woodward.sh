@@ -1,7 +1,7 @@
 :root {
   --r-background-color: #2A0C4E;
   --r-main-font: 'Museo Sans', sans-serif;
-  --r-main-font-size: 32px;
+  --r-main-font-size: 30px;
   --r-main-color: #FBE7D8;
   /* --r-block-margin: #{$blockMargin}; */
   /* --r-heading-margin: #{$headingMargin}; */
@@ -14,7 +14,7 @@
   --r-heading-font-weight: 400;
   /* --r-heading1-text-shadow: #{$heading1TextShadow}; */
   /* --r-heading1-size: #{$heading1Size}; */
-  /* --r-heading2-size: #{$heading2Size}; */
+  --r-heading2-size: 2em;
   /* --r-heading3-size: #{$heading3Size}; */
   /* --r-heading4-size: #{$heading4Size}; */
   /* --r-code-font: #{$codeFont}; */
