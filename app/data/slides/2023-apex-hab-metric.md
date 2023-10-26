@@ -1,7 +1,7 @@
 ---
 title: 'Habitability metric (APEX)'
 enabled: true
-post_date: 2023-10-25
+post_date: 2023-10-26
 ---
 
 ## A new metric for assessing planetary surface habitability
@@ -82,11 +82,12 @@ consider where life might thrive
 ## Tidally-locked aquaplanet
 
 <div style="max-width: 880px; margin: 0 auto">
-  <img src="/static/uploads/slides/2023-oacd-hab-metric/oacd-aqua-hab.png" alt="Land planets habitability">
+  <img src="/static/uploads/slides/2023-apex-hab-metric/apex-aqua-hab.png" alt="Land planets habitability">
 </div>
 
-- ExoCAM: microbial 67%, complex 66%
-- ROCKE-3D: microbial 65%, complex 35%
+- New pattern of habitability, terminator asymmetry
+- ExoCAM: microbial 66%, complex 65%
+- ROCKE-3D: microbial 61%, complex 32%
 ---
 ## Summary
 
@@ -95,8 +96,8 @@ consider where life might thrive
   - Aquaplanet Earth habitability sensitive to model setup (e.g. ocean circulation)
     - But dynamic ocean is similar to continental Earth!
 - Applied to tidally-locked planets:
-  - "Terminator" habitable area on desert worlds
-  - A new "Pacman" habitable area on ocean worlds
+  - Desert worlds: "Terminator" habitable area & good agreement between models
+  - Ocean worlds: new asymmetrical habitable area, models differ in polar habitability
 ---
 ## Future work
 
