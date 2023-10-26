@@ -2,6 +2,7 @@
   --r-background-color: #2A0C4E;
   --r-main-font: 'Museo Sans', sans-serif;
   --r-main-font-size: 30px;
+  --r-main-font-weight: 300;
   --r-main-color: #FBE7D8;
   /* --r-block-margin: #{$blockMargin}; */
   /* --r-heading-margin: #{$headingMargin}; */
@@ -37,6 +38,14 @@
 @font-face {
   font-family: 'Museo Sans';
   font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/MuseoSans-300.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  font-style: normal;
   font-weight: 500;
   font-display: swap;
   src: url('../fonts/MuseoSans-500.otf') format('opentype');
@@ -64,6 +73,10 @@
 
 .col {
   flex: 1;
+}
+
+.reveal {
+  font-weight: var(--r-main-font-weight);
 }
 
 .reveal h3 {
