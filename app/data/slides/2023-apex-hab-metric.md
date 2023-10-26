@@ -104,6 +104,7 @@ consider where life might thrive
 - Metric:
   - Explore nutrient availability
   - Explore other datasets to represent Earth life
+  - Quantitative validation of metric
 - Projects:
   - Continue running simulations along inner HZ
   - Effect of changing continental configuration on surface habitability (e.g. Earth climate for previous geological periods)
