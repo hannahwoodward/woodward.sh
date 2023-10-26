@@ -1,7 +1,7 @@
 ---
-title: 'Habitability metric (OACD)'
+title: 'Habitability metric (APEX)'
 enabled: true
-post_date: 2023-09-28
+post_date: 2023-10-25
 ---
 
 ## A new metric for assessing planetary surface habitability
